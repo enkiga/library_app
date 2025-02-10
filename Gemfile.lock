@@ -364,7 +364,7 @@ DEPENDENCIES
   brakeman
   capybara
   debug
-  devise (~> 4.9, >= 4.9.3)
+  devise (>= 4.9.3)
   faker
   importmap-rails
   jbuilder

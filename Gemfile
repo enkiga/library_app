@@ -43,7 +43,7 @@ gem "thruster", require: false
 gem "faker"
 
 # Add Devise for user authentication
-gem "devise", "~> 4.9", ">= 4.9.3"
+gem "devise", ">= 4.9.3"
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]

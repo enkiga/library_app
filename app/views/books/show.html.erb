@@ -1,8 +1,26 @@
-<h1><%= @book.title %></h1>
-<p>Author: <%= @book.author %></p>
-<p>ISBN: <%= @book.isbn %></p>
-<% if @book.available? %>
-  <%= button_to 'Borrow', borrow_book_path(@book), method: :post %>
-<% else %>
-  <p>This book is currently borrowed.</p>
-<% end %>
+<div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6 mt-8">
+  <h1 class="text-3xl font-bold mb-4 text-gray-800"><%= @book.title %></h1>
+
+  <div class="space-y-2 mb-6">
+    <p class="text-lg text-gray-700">
+      <strong class="font-semibold">Author:</strong> <%= @book.author %>
+    </p>
+    <p class="text-lg text-gray-700">
+      <strong class="font-semibold">ISBN:</strong> <%= @book.isbn %>
+    </p>
+    <p class="text-lg text-gray-700">
+      <strong class="font-semibold">Status:</strong>
+      <span class="<%= @book.available? ? 'text-green-600' : 'text-red-600' %>">
+        <%= @book.available? ? 'Available' : 'Borrowed' %>
+      </span>
+    </p>
+  </div>
+
+  <% if @book.available? %>
+    <%= button_to 'Borrow', borrow_book_path(@book), 
+          method: :post,
+          class: "bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" %>
+  <% else %>
+    <p class="text-gray-500 italic">This book is currently borrowed.</p>
+  <% end %>
+</div>
