@@ -32,7 +32,6 @@
         <%= link_to "Library App", root_path, class: "text-xl font-bold" %>
         
         <div class="flex space-x-4">
-          <%= link_to "Books", root_path, class: "hover:text-gray-300" %>
           <% if current_user %>
             <%= link_to "Profile", profile_path, class: "hover:text-gray-300" %>
             <%= button_to "Logout", logout_path, method: :delete, class: "hover:text-gray-300" %>
