@@ -1,0 +1,8 @@
+<h1>Your Borrowed Books</h1>
+<% current_user.borrowings.current.each do |borrowing| %>
+  <div class="borrowing">
+    <h3><%= borrowing.book.title %></h3>
+    <p>Due: <%= borrowing.due_date.to_formatted_s(:long) %></p>
+    <%= button_to 'Return', return_borrowing_path(borrowing), method: :post %>
+  </div>
+<% end %>
