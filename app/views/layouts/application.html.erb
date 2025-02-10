@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= content_for(:title) || "Library App" %></title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -18,13 +19,50 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
-  </body>
+  <body class="flex flex-col min-h-screen bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-gray-800 text-white shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <%= link_to "Library App", root_path, class: "text-xl font-bold" %>
+        
+        <div class="flex space-x-4">
+          <%= link_to "Books", root_path, class: "hover:text-gray-300" %>
+          <% if current_user %>
+            <%= link_to "Profile", profile_path, class: "hover:text-gray-300" %>
+            <%= button_to "Logout", logout_path, method: :delete, class: "hover:text-gray-300" %>
+          <% else %>
+            <%= link_to "Login", login_path, class: "hover:text-gray-300" %>
+            <%= link_to "Sign Up", signup_path, class: "hover:text-gray-300" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto px-4 py-8">
+    <% if notice %>
+      <p class="alert alert-success p-4 mb-4 bg-green-100 text-green-700 rounded"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger p-4 mb-4 bg-red-100 text-red-700 rounded"><%= alert %></p>
+    <% end %>
+    
+    <%= yield %>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white mt-12">
+    <div class="container mx-auto px-4 py-4">
+      <div class="text-center">
+        <p>&copy; <%= Time.current.year %> Library App. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
 </html>
