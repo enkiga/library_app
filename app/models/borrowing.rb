@@ -2,6 +2,9 @@ class Borrowing < ApplicationRecord
   belongs_to :user
   belongs_to :book
 
+  # Scopes
+  scope :current, -> { where(returned_at: nil) }
+
   validate :book_availability, on: :create
 
   private

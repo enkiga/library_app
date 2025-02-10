@@ -1,5 +1,10 @@
 class SessionsController < ApplicationController
-  def new; end
+  skip_before_action :authenticate_user!, only: [ :new, :create ]
+
+  def new
+    # render the login template
+  end
+
 
   def create
     user = User.find_by(email: params[:email])
